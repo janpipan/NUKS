@@ -7,7 +7,7 @@ engine = create_engine("sqlite:///tododatbase.db")
 
 Base = declarative_base()
 
-class Todo(Base):
+class TodoTable(Base):
     __tablename__ = "todoTable"
     id = Column(Integer, primary_key=True)
     task = Column(String(50))

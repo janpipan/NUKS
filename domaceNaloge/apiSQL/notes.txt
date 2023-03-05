@@ -1,0 +1,11 @@
+https://www.sqlitetutorial.net/sqlite-nodejs/connect/
+
+https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/
+
+
+Creating sqlite3 database
+
+First install sqlite3 with npm
+$ npm install sqlite3
+
+Create database.js file connect to database and populate database with tables

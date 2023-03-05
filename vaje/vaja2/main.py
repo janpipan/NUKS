@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from database import engine, Base, Todo
+from database import engine, Base, TodoTable
 from sqlalchemy.orm import Session
 import schemas
 
@@ -19,7 +19,7 @@ def add_todo(todo: schemas.Todo):
         ADD item
     """
     session = Session(bind=engine, expire_on_commit=False)
-    todoDB = Todo(task=todo.task)
+    todoDB = TodoTable(task=todo.task)
     session.add(todoDB)
     session.commit()
     id = todoDB.id
