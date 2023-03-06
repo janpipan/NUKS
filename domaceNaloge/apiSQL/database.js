@@ -1,4 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
+const Sequelize = require('sequelize');
+
 
 
 let db = new sqlite3.Database('./apiSQL/db/data.db', (err) => {
@@ -12,5 +14,7 @@ let db = new sqlite3.Database('./apiSQL/db/data.db', (err) => {
     }
 });
 
-module.exports = db
+const sequelize = new Sequelize('sqlite://./apiSQL/db/data.db');
+
+module.exports = sequelize;
 
