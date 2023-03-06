@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./database.js');
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
 
 
