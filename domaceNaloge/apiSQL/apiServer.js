@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const Sequelize = require('sequelize');
 const db = require('./database.js');
-import { Sequelize, Model, DataTypes } from 'sequelize';
 
 
 
@@ -14,6 +14,9 @@ const port = 3000;
 
 app.listen(port, () => console.log(`Hello world app listening on ${port}`)); 
 
+
+// connect to database
+const sequelize = new Sequelize('sqlite')
 
 // Poll get request
 app.get('/', (req,res) => {
