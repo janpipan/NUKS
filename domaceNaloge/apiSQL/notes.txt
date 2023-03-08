@@ -9,3 +9,38 @@ First install sqlite3 with npm
 $ npm install sqlite3
 
 Create database.js file connect to database and populate database with tables
+
+
+GET requests
+/polls
+/pollsAnswer/:id
+/polls/:id
+/answers
+/answer/:id
+
+
+POST requests
+/poll
+{
+    "question": "string",
+    "author": "string",
+    "multipleAnswers": "boolean",
+    "addAnswer": "boolean"
+}
+/answer
+{
+    "answer": "string",
+    "count": "integer",
+    "pollId": "integer"
+}
+
+PUT requests
+/polls/:id
+{
+    "question": "string"
+}
+
+DELETE requests
+/polls/:id
+
+

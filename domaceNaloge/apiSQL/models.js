@@ -37,9 +37,7 @@ Answer.init({
 });
 
 
-Poll.hasMany(Answer, {
-    foreignKey: 'questionId'
-});
+Poll.hasMany(Answer);
 Answer.belongsTo(Poll);
 
 module.exports = {Poll, Answer}

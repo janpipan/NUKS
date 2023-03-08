@@ -18,16 +18,27 @@ app.listen(port, () => console.log(`Server is listening on ${port}`));
 
 
 // Polls get request
-app.get('/polls', async (req,res) => {
-    const users = await Poll.findAll();
-    res.send(users);
+app.get('/polls', async (req, res) => {
+    const polls = await Poll.findAll();
+    res.send(polls);
+});
+
+app.get('/pollsAnswer/:id', async (req, res) => {
+    const pollId = req.params.id;
+    const poll = await Poll.findOne({
+        include: [{
+            model: Answer
+        }],
+        where: {id: pollId}
+    });
+    res.send(poll)
 });
 
 // Poll get request
 app.get('/polls/:id', async (req, res) => {
     const pollId = req.params.id;
-    const user = await Poll.findOne({ where: { id: pollId}});
-    res.send(user);
+    const poll = await Poll.findOne({ where: { id: pollId}});
+    res.send(poll);
 });
 
 // Poll post request
@@ -36,7 +47,7 @@ app.get('/polls/:id', async (req, res) => {
 app.post('/poll', async (req,res) => {
     await Poll.create(req.body);
     res.send('Poll is created');
-})
+});
 /*
 app.post('/poll', (req,res) =>{
     Poll.create(req.body).then(() => {
@@ -59,6 +70,23 @@ app.delete('/polls/:id', async (req, res) => {
     const pollId = req.params.id;
     await Poll.destroy({where: {id: pollId}});
     res.send('Poll deleted');
+});
+
+
+app.post('/answer', async (req, res) => {
+    await Answer.create(req.body);
+    res.send('Answer added');
+});
+
+app.get('/answers', async (req, res) => {
+    const answers = await Answer.findAll();
+    res.send(answers);
+});
+
+app.get('/answers/:id', async (req, res) => {
+    const answerId = req.params.id
+    const answer = await Answer.findOne({where: {id: answerId}})
+    res.send(answer);
 });
 /*
 app.post('/poll', (req,res) =>{
