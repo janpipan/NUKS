@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./database.js');
-const Poll = require('./poll.js')
+//const Poll = require('./poll.js')
+const {Poll, Answer} = require('./models.js')
 
 //sequelize.sync({force: true}).then(() => console.log('db is ready'));
 sequelize.sync().then(() => console.log('db is ready'));
