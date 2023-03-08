@@ -157,7 +157,7 @@ TASK: Implement REST API for your project.
 
 > | name              |  type     | data type      | description                         |
 > |-------------------|-----------|----------------|-------------------------------------|
-> | `pollId` |  required | int ($int64)   | None        |
+> | `answerId` |  required | int ($int64)   | None        |
 
 #### Responses
 
@@ -248,5 +248,4 @@ Poll.init({
     modelName: 'poll'
 });
 ```
-## API Server
 
