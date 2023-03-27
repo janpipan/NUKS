@@ -44,7 +44,7 @@ app.get('/polls/:id', async (req, res) => {
 // Poll post request
 // async operation
 
-app.post('/poll', async (req,res) => {
+app.post('/polls', async (req,res) => {
     await Poll.create(req.body);
     res.send('Poll is created');
 });
@@ -73,7 +73,7 @@ app.delete('/polls/:id', async (req, res) => {
 });
 
 
-app.post('/answer', async (req, res) => {
+app.post('/answers', async (req, res) => {
     await Answer.create(req.body);
     res.send('Answer added');
 });
