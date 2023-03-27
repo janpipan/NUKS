@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: polls-depl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: polls
+    template:
+        metadata:
+            labels:
+                app: polls
+        spec:
+            containers:
+                - name: polls
+                  image: janpipan/polls
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: polls-svc
+spec:
+    selector:
+        app: polls
+    ports:
+        - name: polls
+          protocol: TCP
+          port: 3000
+          targetPort: 3000
