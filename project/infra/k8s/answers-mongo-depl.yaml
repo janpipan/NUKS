@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: answers-mongo-depl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: answers-mongo
+    template:
+        metadata:
+            labels:
+                app: answers-mongo
+        spec:
+            containers:
+                - name: answers-mongo
+                  image: mongo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: answers-mongo-svc
+spec:
+    selector:
+        app: answers-mongo
+    ports:
+        - name: db
+          protocol: TCP
+          port: 27017
+          targetPort: 27017

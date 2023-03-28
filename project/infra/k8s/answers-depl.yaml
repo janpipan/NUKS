@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: answers-depl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: answers
+    template:
+        metadata:
+            labels:
+                app: answers
+        spec:
+            containers:
+                - name: answers
+                  image: janpipan/answers
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: answers-svc
+spec:
+    selector:
+        app: answers
+    ports:
+        - name: answers
+          protocol: TCP
+          port: 3000
+          targetPort: 3000

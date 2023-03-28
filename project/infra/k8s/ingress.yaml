@@ -17,3 +17,10 @@ spec:
                             name: polls-svc
                             port:
                                 number: 3000
+                  - path: /api/answers/?(.*)
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: answers-svc
+                            port:
+                                number: 3000
