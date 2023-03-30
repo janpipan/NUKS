@@ -3,7 +3,7 @@ import { Answer } from '../models/answer';
 
 const router = express.Router();
 
-router.put('/api/answers/:id', async (req, res) => {
+router.put('/api/answers//answer/:id', async (req, res) => {
     const answer = await Answer.findById(req.params.id);
 
     if (!answer) {
