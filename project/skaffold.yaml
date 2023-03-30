@@ -24,3 +24,19 @@ build:
               manual:
                   - src: 'src/**/*.ts'
                     dest: .
+        - image: janpipan/questions
+          context: ./questions
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.ts'
+                    dest: .
+        - image: janpipan/event-bus
+          context: ./event-bus
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: 'src/**/*.ts'
+                    dest: .
