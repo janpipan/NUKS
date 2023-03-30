@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: event-bus-postgres
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: event-bus-postgres
+    template:
+        metadata:
+            labels:
+                app: event-bus-postgres
+        spec:
+            containers:
+                - name: event-bus-postgres
+                  image: postgres
+                  ports:
+                      - containerPort: 5432
+                  envFrom:
+                      - configMapRef:
+                            name: event-bus-postgres-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: event-bus-postgres-svc
+    labels:
+        app: event-bus-postgres
+spec:
+    selector:
+        app: event-bus-postgres
+    ports:
+        - name: db
+          protocol: TCP
+          port: 5432
+          targetPort: 5432

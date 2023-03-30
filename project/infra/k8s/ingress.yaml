@@ -24,3 +24,17 @@ spec:
                             name: answers-svc
                             port:
                                 number: 3000
+                  - path: /api/questions/?(.*)
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: questions-svc
+                            port:
+                                number: 3000
+                  - path: /api/events/?(.*)
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: event-bus-svc
+                            port:
+                                number: 3000
