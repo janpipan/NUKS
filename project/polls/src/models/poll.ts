@@ -1,10 +1,17 @@
 import mongoose from 'mongoose';
 
+interface AnswerAttrs {
+    answer: string;
+    count: number;
+    pollId: string;
+}
+
 interface PollAttrs {
     title: string;
     author: string;
     multipleAnswers: boolean;
     addAnswers: boolean;
+    answers: AnswerAttrs[];
 }
 
 interface PollModel extends mongoose.Model<PollDoc> {
@@ -16,6 +23,7 @@ interface PollDoc extends mongoose.Document {
     author: string;
     multipleAnswers: boolean;
     addAnswers: boolean;
+    answers: AnswerAttrs[];
 }
 
 const pollSchema = new mongoose.Schema({
@@ -35,6 +43,22 @@ const pollSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    answers: [
+        {
+            answer: {
+                type: String,
+                required: true,
+            },
+            count: {
+                type: Number,
+                required: true,
+            },
+            pollId: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
 });
 
 pollSchema.statics.build = (attrs: PollAttrs) => {

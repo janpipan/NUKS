@@ -3,7 +3,7 @@ import { Poll } from '../models/poll';
 
 const router = express.Router();
 
-router.get('/api/polls', async (req: Request, res: Response) => {
+router.get('/api/polls/poll', async (req: Request, res: Response) => {
     // get all polls from db
     const polls = await Poll.find({});
 

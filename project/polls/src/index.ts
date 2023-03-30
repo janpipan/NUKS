@@ -1,18 +1,16 @@
 import express from 'express';
 import { json } from 'body-parser';
 import { getPollRouter } from './routes';
-import { createPollRouter } from './routes/create';
-import { updatePollRouter } from './routes/update';
-import { readPollRouter } from './routes/read';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import { eventRouter } from './routes/events';
 
 const app = express();
 app.use(json());
+app.use(cors());
 
 app.use(getPollRouter);
-app.use(createPollRouter);
-app.use(updatePollRouter);
-app.use(readPollRouter);
+app.use(eventRouter);
 
 const startdb = async () => {
     try {
