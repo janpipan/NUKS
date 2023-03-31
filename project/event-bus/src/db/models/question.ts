@@ -5,7 +5,7 @@ import {
     DataTypes,
     CreationOptional,
 } from 'sequelize';
-import initdb from '../initdb';
+import dbconnection from '../dbconnection';
 
 class Question extends Model<
     InferAttributes<Question>,
@@ -50,7 +50,7 @@ Question.init(
         },
     },
     {
-        sequelize: initdb,
+        sequelize: dbconnection,
         tableName: 'question-events',
     }
 );

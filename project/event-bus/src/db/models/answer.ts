@@ -5,7 +5,7 @@ import {
     DataTypes,
     CreationOptional,
 } from 'sequelize';
-import initdb from '../initdb';
+import dbconnection from '../dbconnection';
 
 class Answer extends Model<
     InferAttributes<Answer>,
@@ -13,7 +13,6 @@ class Answer extends Model<
 > {
     declare id: CreationOptional<number>;
     declare type: string;
-    declare answerId: string;
     declare answer: string;
     declare count: number;
     declare pollId: string;
@@ -30,10 +29,6 @@ Answer.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        answerId: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         answer: {
             type: DataTypes.STRING,
         },
@@ -45,7 +40,7 @@ Answer.init(
         },
     },
     {
-        sequelize: initdb,
+        sequelize: dbconnection,
         tableName: 'answer-events',
     }
 );

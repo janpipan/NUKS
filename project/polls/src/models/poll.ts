@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 interface AnswerAttrs {
     answer: string;
@@ -19,6 +19,7 @@ interface PollModel extends mongoose.Model<PollDoc> {
 }
 
 interface PollDoc extends mongoose.Document {
+    _id: Types.ObjectId;
     title: string;
     author: string;
     multipleAnswers: boolean;
@@ -27,6 +28,10 @@ interface PollDoc extends mongoose.Document {
 }
 
 const pollSchema = new mongoose.Schema({
+    _id: {
+        type: Types.ObjectId,
+        required: true,
+    },
     title: {
         type: String,
         required: true,

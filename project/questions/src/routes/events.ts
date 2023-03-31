@@ -11,10 +11,11 @@ router.post('/api/questions/events', async (req: Request, res: Response) => {
         console.log('event received');
 
         // check if question exists
-        const question = await Question.findById(data.questionId);
+        /* const question = await Question.findById(data.questionId);
         if (question) {
-        }
+        } */
     }
+    res.status(200);
 });
 
 export { router as eventRouter };
