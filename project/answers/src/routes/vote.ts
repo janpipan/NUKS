@@ -4,29 +4,26 @@ import axios from 'axios';
 
 const router = express.Router();
 
-router.put('/api/answers/answer/:id', async (req, res) => {
+router.post('/api/answers/vote/:id', async (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     const answer = await Answer.findById(id);
-
-    console.log(answer);
 
     if (!answer) {
         return res.status(500).send('Answer not found');
     }
 
     answer.set({
-        answer: req.body.answer,
+        count: ++answer.count,
     });
 
     await answer.save();
 
     await axios
-        .post('http://event-bus-svc:3000/api/events/answer', {
+        .post('http://event-bus-svc:3000/api/events/vote', {
             type: 'answerUpdated',
             answerId: answer._id,
-            answer: req.body.answer,
+            answer: answer.answer,
             count: answer.count,
             pollId: answer.pollId,
         })
@@ -37,4 +34,4 @@ router.put('/api/answers/answer/:id', async (req, res) => {
     res.send(answer);
 });
 
-export { router as updateAnswerRouter };
+export { router as voteRouter };

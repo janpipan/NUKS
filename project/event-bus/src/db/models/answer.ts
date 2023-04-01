@@ -12,6 +12,7 @@ class Answer extends Model<
     InferCreationAttributes<Answer>
 > {
     declare id: CreationOptional<number>;
+    declare answerId: string;
     declare type: string;
     declare answer: string;
     declare count: number;
@@ -24,6 +25,10 @@ Answer.init(
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+        },
+        answerId: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         type: {
             type: DataTypes.STRING,

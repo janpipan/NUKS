@@ -9,7 +9,7 @@ export async function eventHandler(event: Event) {
 
     if (eventType === 'answer') {
         console.log('answer event Received');
-        const { pollId, answerId, answer } = <Answer>data;
+        const { pollId, answerId, answer, count } = <Answer>data;
 
         // find poll
         const poll = await Poll.findById(pollId);
@@ -19,11 +19,18 @@ export async function eventHandler(event: Event) {
                 poll.answers.push(<Answer>data);
                 await poll.save();
             } else if (data.type === 'answerUpdated') {
+                console.log('Answer update received');
+
                 const result = await Poll.updateOne(
                     { _id: pollId, 'answers.answerId': answerId },
-                    { $set: { 'answers.$.answer': answer } }
+                    {
+                        $set: {
+                            'answers.$.answer': answer,
+                            'answers.$.count': count,
+                        },
+                    }
                 );
-                console.log(result);
+                //console.log(result);
             }
         }
     } else if (eventType === 'question') {

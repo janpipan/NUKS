@@ -5,6 +5,7 @@ import { readAnswerRouter } from './routes/read';
 import { createAnswerRouter } from './routes/create';
 import { updateAnswerRouter } from './routes/update';
 import { eventRouter } from './routes/events';
+import { voteRouter } from './routes/vote';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
@@ -17,6 +18,7 @@ app.use(createAnswerRouter);
 app.use(updateAnswerRouter);
 app.use(readAnswerRouter);
 app.use(eventRouter);
+app.use(voteRouter);
 
 const startdb = async () => {
     try {
