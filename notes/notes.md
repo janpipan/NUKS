@@ -15,3 +15,9 @@ Change database
 Display all data
 
 `$ show db.<collectionName>.find().pretty()`
+
+# PostgreSQL
+
+Connecting to postgreSQL
+
+`$ psql -h localhost -U admin --password -p 5432 polls`
