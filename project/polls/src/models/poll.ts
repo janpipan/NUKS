@@ -1,12 +1,14 @@
 import mongoose, { Types } from 'mongoose';
 
 interface AnswerAttrs {
+    answerId: string;
     answer: string;
     count: number;
     pollId: string;
 }
 
 interface PollAttrs {
+    _id: Types.ObjectId;
     title: string;
     author: string;
     multipleAnswers: boolean;
@@ -50,6 +52,10 @@ const pollSchema = new mongoose.Schema({
     },
     answers: [
         {
+            answerId: {
+                type: String,
+                required: true,
+            },
             answer: {
                 type: String,
                 required: true,

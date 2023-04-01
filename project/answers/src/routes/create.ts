@@ -15,11 +15,12 @@ router.post(
 
         await answerObj.save();
 
-        console.log(pollId);
+        //console.log(pollId);
 
         await axios
             .post('http://event-bus-svc:3000/api/events/answer', {
                 type: 'answerCreated',
+                answerId: answerObj._id,
                 answer,
                 count: 0,
                 pollId,
