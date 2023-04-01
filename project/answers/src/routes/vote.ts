@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { Answer } from '../models/answer';
 import axios from 'axios';
+import { log } from 'console';
 
 const router = express.Router();
 
-router.post('/api/answers/vote/:id', async (req, res) => {
+router.post('/api/answers/vote/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const answer = await Answer.findById(id);
@@ -19,6 +20,8 @@ router.post('/api/answers/vote/:id', async (req, res) => {
 
     await answer.save();
 
+    console.log('Saved');
+
     await axios
         .post('http://event-bus-svc:3000/api/events/vote', {
             type: 'answerUpdated',
@@ -30,6 +33,7 @@ router.post('/api/answers/vote/:id', async (req, res) => {
         .catch((e) => {
             console.log(e.message);
         });
+    console.log('event transmitted');
 
     res.send(answer);
 });

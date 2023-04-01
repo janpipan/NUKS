@@ -30,7 +30,12 @@ export async function eventHandler(event: Event) {
                         },
                     }
                 );
-                //console.log(result);
+                console.log(result);
+            } else if (data.type === 'answerDeleted') {
+                const result = await Poll.updateOne({
+                    _id: pollId,
+                    'answers.answerId': answerId,
+                });
             }
         }
     } else if (eventType === 'question') {

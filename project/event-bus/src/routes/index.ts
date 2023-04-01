@@ -31,10 +31,14 @@ router.get('/api/events/', (req: Request, res: Response) => {});
 router.post('/api/events/answer', async (req: Request, res: Response) => {
     const event = <Answer>req.body;
     console.log(req.body);
+
     if (event.type === 'answerUpdated') {
+        // answer update logic
+
         const answer = await Answer.findOne({
             where: { answerId: event.answerId, type: 'answerUpdated' },
         });
+        // if answer exists update updateEvent otherwise create updateEvent
         if (answer) {
             const result = answer.update({ answer: event.answer });
             sendEvent({ eventType: 'answer', data: event }, services);
@@ -44,7 +48,15 @@ router.post('/api/events/answer', async (req: Request, res: Response) => {
             sendEvent({ eventType: 'answer', data: event }, services);
             res.status(201).json({ result });
         }
+    } else if (event.type === 'answerDeleted') {
+        // answer delete logic
+        const result = await Answer.destroy({
+            where: { answerId: event.answerId },
+        });
+        sendEvent({ eventType: 'answer', data: event }, services);
+        res.status(201).json({ result });
     } else {
+        // answer create logic
         const result = await Answer.create(event);
         sendEvent({ eventType: 'answer', data: event }, services);
         res.status(201).json({ result });
@@ -61,6 +73,10 @@ router.post('/api/events/vote', async (req: Request, res: Response) => {
         const result = answer.update({ count: event.count });
         sendEvent({ eventType: 'answer', data: event }, services);
         return res.status(200).json({ result });
+    } else {
+        const result = await Answer.create(event);
+        sendEvent({ eventType: 'answer', data: event }, services);
+        res.status(201).json({ result });
     }
 });
 

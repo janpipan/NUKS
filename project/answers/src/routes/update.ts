@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const router = express.Router();
 
-router.put('/api/answers/answer/:id', async (req, res) => {
+router.put('/api/answers/answer/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     console.log(id);
 
