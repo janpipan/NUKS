@@ -21,3 +21,9 @@ Display all data
 Connecting to postgreSQL
 
 `$ psql -h localhost -U admin --password -p 5432 polls`
+
+# React
+
+Start react project
+
+`$ npx create-react-app <appName>`
