@@ -68,7 +68,7 @@ router.post('/api/events/vote', async (req: Request, res: Response) => {
     const answer = await Answer.findOne({
         where: { answerId: event.answerId, type: 'answerUpdated' },
     });
-
+    // if answer exists update updateEvent otherwise create updateEvent
     if (answer) {
         const result = answer.update({ count: event.count });
         sendEvent({ eventType: 'answer', data: event }, services);
@@ -82,9 +82,39 @@ router.post('/api/events/vote', async (req: Request, res: Response) => {
 
 router.post('/api/events/question', async (req: Request, res: Response) => {
     const event = <Question>req.body;
-    const result = await Question.create(event);
-    sendEvent({ eventType: 'question', data: event }, services);
-    res.status(201).json({ result });
+
+    if (event.type === 'questionCreated') {
+        const result = await Question.create(event);
+        sendEvent({ eventType: 'question', data: event }, services);
+        res.status(201).json({ result });
+    } else if (event.type === 'questionUpdated') {
+        const question = await Question.findOne({
+            where: { questionId: event.questionId, type: 'questionUpdated' },
+        });
+
+        if (question) {
+            const result = await question.update({ title: event.title });
+            sendEvent({ eventType: 'question', data: event }, services);
+            res.status(201).json({ result });
+        } else {
+            const result = await Question.create(event);
+            sendEvent({ eventType: 'question', data: event }, services);
+            res.status(201).json({ result });
+        }
+    } else if (event.type === 'questionDeleted') {
+        // question delete logic
+        const result = await Question.destroy({
+            where: { questionId: event.questionId },
+        });
+        // if question is deleted delete answers associated with question
+        if (result) {
+            await Answer.destroy({
+                where: { pollId: event.questionId },
+            });
+        }
+        sendEvent({ eventType: 'question', data: event }, services);
+        res.status(201).json({ result });
+    }
 });
 
 export { router as postEventRouter };

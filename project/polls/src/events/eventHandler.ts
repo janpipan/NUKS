@@ -66,6 +66,12 @@ export async function eventHandler(event: Event) {
 
                 await poll.save();
             }
+        } else if (data.type === 'questionDeleted') {
+            const { questionId } = <Question>data;
+
+            const result = await Poll.findByIdAndDelete(questionId);
+
+            return result;
         }
     }
 }

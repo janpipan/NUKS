@@ -4,7 +4,7 @@ import { getAnswerRouter } from './routes';
 import { readAnswerRouter } from './routes/read';
 import { createAnswerRouter } from './routes/create';
 import { updateAnswerRouter } from './routes/update';
-import { eventRouter } from './routes/events';
+import { eventRouter } from './events/eventHandler';
 import { voteRouter } from './routes/vote';
 import { deleteRouter } from './routes/delete';
 import cors from 'cors';

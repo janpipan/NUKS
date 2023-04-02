@@ -5,6 +5,7 @@ import { createQuestionRouter } from './routes/create';
 import { updateQuestionRouter } from './routes/update';
 import { readQuestionRouter } from './routes/read';
 import { eventRouter } from './routes/events';
+import { deleteQuestionRouter } from './routes/delete';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
@@ -17,6 +18,7 @@ app.use(createQuestionRouter);
 app.use(updateQuestionRouter);
 app.use(readQuestionRouter);
 app.use(eventRouter);
+app.use(deleteQuestionRouter);
 
 const startdb = async () => {
     try {
