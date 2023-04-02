@@ -10,4 +10,4 @@ router.get('/api/polls/poll', async (req: Request, res: Response) => {
     res.send(polls);
 });
 
-export { router as getPollRouter };
+export { router as getPollsRouter };
