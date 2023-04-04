@@ -16,7 +16,6 @@ const AddAnswers = () => {
         })
     );
 
-    console.log(state);
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -48,6 +47,7 @@ const AddAnswers = () => {
 
     return (
         <div className="container">
+            <h3>Add answers</h3>
             <DisplayPoll poll={state} />
             <form onSubmit={onSubmit}>
                 <ul className="list-group">

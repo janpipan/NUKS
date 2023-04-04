@@ -29,27 +29,33 @@ const PollCreate = () => {
     };
 
     return (
-        <div>
+        <div className="container-sm">
+            <h3>Create new poll</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Poll title</label>
                     <input
+                        className="form-control"
                         value={data.title}
                         onChange={(e) =>
                             setData({ ...data, title: e.target.value })
                         }
-                        className="form-control"
                     />
+                </div>
+                <div className="form-group">
                     <label>Author</label>
                     <input
+                        className="form-control"
                         value={data.author}
                         onChange={(e) =>
                             setData({ ...data, author: e.target.value })
                         }
-                        className="form-control"
                     />
+                </div>
+                <div className="form-check">
                     <label>Multiple Answers</label>
                     <input
+                        className="form-check-input"
                         type="checkbox"
                         value={data.multipleAnswers}
                         onChange={(e) =>
@@ -60,13 +66,18 @@ const PollCreate = () => {
                         }
                         checked={data.multipleAnswers}
                     />
-                    <br />
+                </div>
+                <div className="form-check">
                     <label>Add Answers</label>
                     <input
+                        className="form-check-input"
                         type="checkbox"
                         value={data.addAnswers}
                         onChange={(e) =>
-                            setData({ ...data, addAnswers: e.target.checked })
+                            setData({
+                                ...data,
+                                addAnswers: e.target.checked,
+                            })
                         }
                         checked={data.addAnswers}
                     />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import AnswersForm from './AnswersForm';
 import DisplayPoll from './DisplayPoll';
+import AnswerList from './AnswerList';
+import axios from 'axios';
 
-const Vote = () => {
+const Poll = () => {
     const { id } = useParams();
     const [poll, setPoll] = useState({});
 
@@ -19,10 +19,10 @@ const Vote = () => {
 
     return (
         <div className="container">
-            <DisplayPoll poll={poll}></DisplayPoll>
-            <AnswersForm answers={poll.answers} pollId={id} />
+            <DisplayPoll poll={poll} />
+            <AnswerList answers={poll.answers} />
         </div>
     );
 };
 
-export default Vote;
+export default Poll;

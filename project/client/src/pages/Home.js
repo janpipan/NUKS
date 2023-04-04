@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div className="container">
             <h1>Polls</h1>
-            <PollsList />
+            <PollsList linkPath={'/poll/'} />
         </div>
     );
 }

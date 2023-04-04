@@ -4,7 +4,7 @@ import { Outlet, Link } from 'react-router-dom';
 export default function Nav() {
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-white bg-light">
                 <div className="container-fluid">
                     <button
                         className="navbar-toggler"
@@ -30,6 +30,11 @@ export default function Nav() {
                             <li className="nav-item ">
                                 <Link to="/create" className="nav-link">
                                     Create
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/vote" className="nav-link">
+                                    Vote
                                 </Link>
                             </li>
                         </ul>
