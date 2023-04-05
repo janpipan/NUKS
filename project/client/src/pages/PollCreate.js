@@ -29,7 +29,7 @@ const PollCreate = () => {
     };
 
     return (
-        <div className="container-sm">
+        <div className="container mt-3">
             <h3>Create new poll</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">

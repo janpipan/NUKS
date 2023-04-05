@@ -2,9 +2,9 @@ import React from 'react';
 
 const DisplayPoll = ({ poll }) => {
     return (
-        <div>
-            <h3>{poll.title}</h3>
-            <h4>{poll.author}</h4>
+        <div className="container">
+            <h2>{poll.title}</h2>
+            <h5>Created by: {poll.author}</h5>
         </div>
     );
 };

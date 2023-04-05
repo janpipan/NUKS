@@ -5,6 +5,7 @@ import Nav from './pages/Nav';
 import Home from './pages/Home';
 import Vote from './pages/Vote';
 import Poll from './pages/Poll';
+import EditPoll from './pages/EditPoll';
 import PollVoteList from './pages/PollVoteList';
 import AddAnswers from './pages/AddAnswers';
 
@@ -18,8 +19,9 @@ function App() {
                         <Route index element={<PollCreate />} />
                         <Route path="answers/:id" element={<AddAnswers />} />
                     </Route>
-                    <Route path="poll/:id" element={<Poll />}></Route>
-                    <Route path="vote" element={<PollVoteList />}></Route>
+                    <Route path="edit/:id" element={<EditPoll />} />
+                    <Route path="poll/:id" element={<Poll />} />
+                    <Route path="vote" element={<PollVoteList />} />
                     <Route path="vote/:id" element={<Vote />} />
                 </Route>
             </Routes>

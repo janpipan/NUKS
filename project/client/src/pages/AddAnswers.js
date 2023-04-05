@@ -46,34 +46,41 @@ const AddAnswers = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container mt-3">
             <h3>Add answers</h3>
             <DisplayPoll poll={state} />
-            <form onSubmit={onSubmit}>
-                <ul className="list-group">
-                    {Array.from(Array(answers)).map((x, index) => {
-                        return (
-                            <li className="list-group-item" key={index}>
-                                <div className="form-group">
-                                    <label>Answer {index + 1}</label>
-                                    <input
-                                        value={data[index].answer}
-                                        onChange={(e) =>
-                                            updateData(index, e.target.value)
-                                        }
-                                        className="form-control"
-                                        type="text"
-                                    />
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
-                <button className="btn btn-primary mt-2 mb-2">Submit</button>
-            </form>
-            <button className="btn btn-secondary" onClick={onButtonClick}>
-                Add
-            </button>
+            <div className="container">
+                <form onSubmit={onSubmit}>
+                    <ul className="list-group">
+                        {Array.from(Array(answers)).map((x, index) => {
+                            return (
+                                <li className="list-group-item" key={index}>
+                                    <div className="form-group">
+                                        <label>Answer {index + 1}</label>
+                                        <input
+                                            value={data[index].answer}
+                                            onChange={(e) =>
+                                                updateData(
+                                                    index,
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="form-control"
+                                            type="text"
+                                        />
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <button className="btn btn-primary mt-2 mb-2">
+                        Submit
+                    </button>
+                </form>
+                <button className="btn btn-secondary" onClick={onButtonClick}>
+                    Add
+                </button>
+            </div>
         </div>
     );
 };
