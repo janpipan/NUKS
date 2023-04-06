@@ -1,6 +1,6 @@
-# Answers microservice
+# Questions microservice
 
-Microservice for handling answers and voting.
+Microservice for handling questions.
 
 ## REST API
 ### POST Requests
