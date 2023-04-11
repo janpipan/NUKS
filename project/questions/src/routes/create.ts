@@ -6,7 +6,13 @@ const router = express.Router();
 
 router.post('/api/questions/question', async (req: Request, res: Response) => {
     console.log('received');
-    const { title, author, multipleAnswers, addAnswers } = req.body;
+    let { author } = req.body;
+    const { title, multipleAnswers, addAnswers } = req.body;
+
+    if (author === '') {
+        const result = await axios.get('http://polls.local/faas/randName');
+        author = result.data;
+    }
 
     // creates new poll and saves it to the db
     const question = Question.build({
