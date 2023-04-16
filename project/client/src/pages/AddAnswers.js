@@ -20,8 +20,7 @@ const AddAnswers = () => {
         event.preventDefault();
 
         data.forEach(async (answer, index) => {
-            if (answer !== '') {
-                console.log('Sending', index);
+            if (answer.answer !== '') {
                 await axios.post(
                     `http://polls.local/api/answers/answer/${state._id}`,
                     answer
