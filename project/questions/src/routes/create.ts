@@ -10,8 +10,13 @@ router.post('/api/questions/question', async (req: Request, res: Response) => {
     const { title, multipleAnswers, addAnswers } = req.body;
 
     if (author === '') {
-        const result = await axios.get('http://polls.local/faas/randName');
-        author = result.data;
+        try {
+            const result = await axios.get('http://polls.local/faas/randName');
+            author = result.data;
+        } catch (e){
+            console.log('Function not available');
+        }
+        
     }
 
     // creates new poll and saves it to the db
