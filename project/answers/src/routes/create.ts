@@ -9,7 +9,7 @@ router.post(
     async (req: Request, res: Response) => {
         const { answer } = req.body;
         const { pollId } = req.params;
-
+        console.log(pollId);
         // creates answer and save it
         const answerObj = Answer.build({ answer, count: 0, pollId });
 

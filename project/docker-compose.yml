@@ -1,0 +1,58 @@
+version: '3.9'
+services:
+    answers-svc:
+        build: ./answers
+        ports:
+            - 3000:3000
+    answers-mongo-svc:
+        image: mongo:4.4.6
+        ports:
+            - 27017:27017
+        logging:
+            driver: none
+    client-svc:
+        build: ./client
+        ports:
+            - 3001:3000
+    event-bus-svc:
+        build: ./event-bus
+        ports:
+            - 3002:3000
+    event-bus-postgres-svc:
+        image: postgres
+        environment:
+            POSTGRES_DB: polls
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: psltest
+        logging:
+            driver: none
+        ports:
+            - 5432:5432
+    polls-svc:
+        build: ./polls
+        ports:
+            - 3003:3000
+    polls-mongo-svc:
+        image: mongo:4.4.6
+        ports:
+            - 27018:27017
+        logging:
+            driver: none
+    questions-svc:
+        build: ./questions
+        ports:
+            - 3004:3000
+    questions-mongo-svc:
+        image: mongo:4.4.6
+        ports:
+            - 27019:27017
+        logging:
+            driver: none
+    reverse-proxy:
+        build: ./nginx-reverse-proxy
+        ports:
+            - 80:80
+networks:
+    default:
+        external:
+            name: mynetwork

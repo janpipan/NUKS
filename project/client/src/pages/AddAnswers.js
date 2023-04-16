@@ -20,11 +20,14 @@ const AddAnswers = () => {
         event.preventDefault();
 
         data.forEach(async (answer, index) => {
-            await axios.post(
-                `http://polls.local/api/answers/answer/${state._id}`,
-                answer
-            );
-            updateData(index, '');
+            if (answer !== '') {
+                console.log('Sending', index);
+                await axios.post(
+                    `http://polls.local/api/answers/answer/${state._id}`,
+                    answer
+                );
+                updateData(index, '');
+            }
         });
 
         navigate('/');
