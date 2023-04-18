@@ -11,7 +11,7 @@ services:
         logging:
             driver: none
     client-svc:
-        build: ./client
+        build: ./client-docker-compose
         ports:
             - 3001:3000
     event-bus-svc:
@@ -48,8 +48,8 @@ services:
             - 27019:27017
         logging:
             driver: none
-    reverse-proxy:
-        build: ./nginx-reverse-proxy
+    reverse-proxy-external:
+        build: ./nginx-reverse-proxy-docker-compose
         ports:
             - 80:80
 networks:
